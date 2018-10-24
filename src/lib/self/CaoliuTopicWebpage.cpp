@@ -42,6 +42,7 @@ parsePicturesUrlsHelper ( const string& webpage_txt,
                                                                   // >>>>
                                                                   "005uMz33gw1eh3a1r6ak0j30d005zt98.jpg",
                                                                   "005uMz33gw1egsm41zq6qj30f80b4gm9.jpg",
+																  "gif"
                                                                   // <<<<
                                                                 };
         for (const auto& e : ignore_urls_keywords_list) {
@@ -67,8 +68,8 @@ parsePicturesUrls (const string& webpage_txt, vector<string>& pictures_urls_list
     pictures_urls_list.clear();
 
     // just parse the toptip
-    static const string keyword_toptip_begin("<b>本頁主題:</b>");
-    static const string keyword_toptip_end("[樓主]</a></span>");
+    static const string keyword_toptip_begin("<div class=\"tips\" style=\"width:auto\">");
+    static const string keyword_toptip_end("<div class=\"tipad\">");
     const pair<string, size_t>& pair_tmp = fetchStringBetweenKeywords( webpage_txt,
                                                                        keyword_toptip_begin,
                                                                        keyword_toptip_end );
@@ -79,7 +80,7 @@ parsePicturesUrls (const string& webpage_txt, vector<string>& pictures_urls_list
     }
 
     // the list may be on the webpage at the same time
-    static const vector<pair<string, string>> begin_and_end_keywords_list = { make_pair("<img src='", "'"), 
+    static const vector<pair<string, string>> begin_and_end_keywords_list = { make_pair("data-src='", "'"), 
                                                                               make_pair("input type='image' src='", "'"),
                                                                               make_pair("<input src='", "'") };
     

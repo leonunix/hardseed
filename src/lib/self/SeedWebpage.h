@@ -25,8 +25,9 @@ class SeedWebpage : public Webpage
                       ParsePostMultiSections parsePostMultiSections );
         virtual ~SeedWebpage ();
         bool downloadSeed (const string& path, const string& base_name);
+		vector<pair<string, string>> post_sections_list_;
 
     private:
         const string post_url_; 
-        vector<pair<string, string>> post_sections_list_;
+        
 };
